@@ -14,8 +14,7 @@ from haversine import haversine # Used for calculating distance
 
  
 def stations_by_distance(stations, p):
-    '''This function is required for task 1B'''
-    '''This function returns a list of stations and there distance from an arbitrary point p'''
+    '''Required for task 1B - returns a list of stations and there distance from an arbitrary point p'''
     # Define empty list 
     stations_with_distance = []
     # Loop through each station object 
