@@ -9,7 +9,7 @@ geographical data.
 #  Import relevant libraries 
 from floodsystem.utils import sorted_by_key  # noqa
 from floodsystem.station import MonitoringStation
-import haversine # Used for calculating distance 
+from haversine import haversine # Used for calculating distance 
 
  
 def stations_by_distance(stations, p):
