@@ -37,6 +37,6 @@ def stations_within_radius(stations, centre, r):
     # Loop through each station object
     for i in range(len(all_stations)):
         # If station is inside radius add it to the list found_stations
-        if all_stations[i](2) <= r:
-            found_stations.append(all_stations[i](0))
+        if all_stations[i][2] <= r:
+            found_stations.append(all_stations[i][0])
     return found_stations

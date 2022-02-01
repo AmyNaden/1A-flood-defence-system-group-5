@@ -12,7 +12,8 @@ def run():
     found_stations = stations_within_radius(stations, (52.2053, 0.1218), 10)
 
     # Print stations in alphabetical order
-    print(found_stations.sort())
+    found_stations.sort()
+    print(found_stations)
     
 
 if __name__ == "__main__":
