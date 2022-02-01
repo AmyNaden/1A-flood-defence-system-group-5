@@ -15,10 +15,10 @@ def run():
     last_ten = stations_sorted_list[-10:]
 
     # Print closest ten stations
-    print(first_ten)
+    print('\nTen closest stations from Cambridge city centre - ', first_ten)
 
     # Print furthest ten stations
-    print(last_ten)
+    print('\nTen furthest stations from Cambridge city centre - ',last_ten)
 
 
 if __name__ == "__main__":
