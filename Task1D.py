@@ -1,5 +1,5 @@
 from floodsystem.stationdata import build_station_list
-from floodsystem.geo import rivers_with_stations
+from floodsystem.geo import rivers_with_station
 
 
 
@@ -14,8 +14,8 @@ def run1():
     print(str(len(rivers))+' stations.')
     
     # Print the first 10 rivers in alphebetical order
-    rivers.sort()
-    print('First 10 - '+rivers[:10])
+    rivers_sorted = sorted(rivers)
+    print('First 10 - '+str(rivers_sorted[:10]))
 
 
 if __name__ == "__main__":

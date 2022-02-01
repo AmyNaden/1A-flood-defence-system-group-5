@@ -42,12 +42,12 @@ def stations_within_radius(stations, centre, r):
             found_stations.append(all_stations[i][0])
     return found_stations
 
-    def rivers_with_station(stations):
-        '''Required for task 1D - returns names of rivers with a monitoring station'''
-        # create an empty set for river names
-        rivers = set()
-        # Loop through each station object 
-        for i in range(len(stations)):
-            # Add river name to set 
-            rivers.add(stations[i].river)
-        return rivers 
+def rivers_with_station(stations):
+    '''Required for task 1D - returns names of rivers with a monitoring station'''
+    # create an empty set for river names
+    rivers = set()
+    # Loop through each station object 
+    for i in range(len(stations)):
+        # Add river name to set 
+        rivers.add(stations[i].river)
+    return rivers 
