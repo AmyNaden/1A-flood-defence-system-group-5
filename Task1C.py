@@ -13,7 +13,7 @@ def run():
 
     # Print stations in alphabetical order
     found_stations.sort()
-    print(found_stations)
+    print('\nStations within 10km of Cambrdige city centre - ', found_stations)
     
 
 if __name__ == "__main__":
