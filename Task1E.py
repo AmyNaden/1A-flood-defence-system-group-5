@@ -8,7 +8,7 @@ def run():
     stations = build_station_list()
     N = 9
     list = rivers_by_station_number(stations, N)
-    print(list)
+    print("\nThe 9 rivers with the greatest number of monitoring stations - ", list)
 
 if __name__ == "__main__":
     print("*** Task 1E: CUED Part IA Flood Warning System ***")

@@ -40,15 +40,25 @@ class MonitoringStation:
         return d
 
     def typical_range_consistent(self):
-        if (max(self.typical_range) < min(self.typical_range)):
+        '''Required for Task 1F - finds inconsistent range data'''
+        # Case where there is no data
+        if self.typical_range == None:
             return False
-        elif self.typical_range == 0:
+        # If high value less than low value then inconsistent
+        elif (self.typical_range[1] < self.typical_range[0]):
             return False
+        # Otherwise must be true
         else:
             return True
 
 def inconsistent_typical_range_stations(stations):
+    '''Required for Task 1F - prints a list of inconsistent data'''
+    # Creates an list to fill with inconsistent stations
     inconsistent_stations = []
+    # Iterates through the stations
     for station in stations:
+        # Uses class method to find inconsistent data
         if MonitoringStation.typical_range_consistent(station) == False:
-            inconsistent_stations.append(station)
+            # Adds the inconsistent stations to the list
+            inconsistent_stations.append(station.name)
+    return inconsistent_stations

@@ -5,6 +5,7 @@ from floodsystem.station import inconsistent_typical_range_stations
 def run():
     stations = build_station_list()
     list = inconsistent_typical_range_stations(stations)
+    list.sort()
     print(list)
 
 if __name__ == "__main__":
