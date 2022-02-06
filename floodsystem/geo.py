@@ -82,6 +82,7 @@ def station_names(stations):
     return station_names
 
 def rivers_by_station_number(stations, N):
+    '''Required for Task 1E - returns a list of rivers sorted by their number of stations'''
     # Fetch rivers dictionary
     rivers_dict = stations_by_river(stations)
     rivers_and_stations = []
