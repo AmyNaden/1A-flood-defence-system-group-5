@@ -80,3 +80,25 @@ def station_names(stations):
     # Return sorted list of names 
     station_names.sort()
     return station_names
+
+def rivers_by_station_number(stations, N):
+    # Fetch rivers dictionary
+    rivers_dict = stations_by_river(stations)
+    rivers_and_stations = []
+    # Loop through each station object
+    for i in range(len(rivers_dict)):
+        river = list(rivers_dict)[i-1]
+        number_of_stations = len(rivers_dict[river])
+        river_and_stations = (river, number_of_stations)
+        rivers_and_stations.append(river_and_stations)
+    rivers_and_stations.sort(key = len, reverse = True)
+    # Sort the list dependent on amount of stations
+    sorted_rivers = sorted(rivers_and_stations, key=lambda tup: tup[1], reverse = True)
+    # Define new list to cumulate all terms
+    required_list = sorted_rivers[:N]
+    # Iterate between the Nth term and the end of the list 
+    for i in range(N-1, len(sorted_rivers)):
+        # Iterate through these to find if any of them are the same as the Nth value
+        if sorted_rivers[i][1] == sorted_rivers[N][1]: 
+            required_list.append(sorted_rivers[i]) 
+    return required_list
