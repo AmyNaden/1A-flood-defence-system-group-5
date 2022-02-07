@@ -4,6 +4,7 @@ from floodsystem.geo import stations_within_radius, rivers_with_station, station
 from floodsystem.stationdata import build_station_list 
 
 def test_stations_by_distance():
+    '''Test for Task 1B'''
     # Build list of stations and define coord
     stations = build_station_list()
     p = 52.2053, 0.1218
@@ -15,6 +16,7 @@ def test_stations_by_distance():
     assert isinstance(by_distance[0], tuple)
 
 def test_stations_within_radius():
+    '''Test for Task 1C'''
     # Build list of stations
     stations = build_station_list()
     # Find stations within 10km radius of Cambridge
@@ -24,6 +26,7 @@ def test_stations_within_radius():
     assert len(found_stations) > 0
 
 def test_rivers_with_station():
+    '''Test for Task 1D Part 1'''
     # Build list of stations
     stations = build_station_list()
     # Call function being tested
@@ -32,6 +35,7 @@ def test_rivers_with_station():
     assert len(rivers)
 
 def test_stations_by_river():
+    '''Test for Task 1D Part 2'''
     # Build list of stations
     stations = build_station_list()
     # Call function being tested
