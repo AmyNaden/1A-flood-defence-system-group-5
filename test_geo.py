@@ -1,6 +1,7 @@
 """Unit test for the geo module"""
 
-from floodsystem.geo import stations_within_radius, rivers_with_station, stations_by_river, stations_by_distance 
+from tokenize import String
+from floodsystem.geo import stations_within_radius, rivers_with_station, stations_by_river, stations_by_distance, rivers_by_station_number
 from floodsystem.stationdata import build_station_list 
 
 def test_stations_by_distance():
@@ -41,3 +42,10 @@ def test_stations_by_river():
     # Call function being tested
     rivers = stations_by_river(stations)
     assert len(rivers) > 0
+
+def test_rivers_by_station_number():
+    '''Test for Task 1E'''
+    stations = build_station_list()
+    list = rivers_by_station_number(stations, 9)
+
+    assert len(list) >= 9

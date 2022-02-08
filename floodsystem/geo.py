@@ -88,11 +88,13 @@ def rivers_by_station_number(stations, N):
     rivers_and_stations = []
     # Loop through each station object
     for i in range(len(rivers_dict)):
+        # Extracts ith river from dictionary
         river = list(rivers_dict)[i-1]
+        # Finds number of stations on river
         number_of_stations = len(rivers_dict[river])
         river_and_stations = (river, number_of_stations)
+        # Adding (river, no. stations) tuple to list
         rivers_and_stations.append(river_and_stations)
-    rivers_and_stations.sort(key = len, reverse = True)
     # Sort the list dependent on amount of stations
     sorted_rivers = sorted(rivers_and_stations, key=lambda tup: tup[1], reverse = True)
     # Define new list to cumulate all terms

@@ -32,7 +32,6 @@ def test_monitoring_station_method():
     no_range = MonitoringStation(0, 0, 0, 0, None, 0, 0)
     consistent = MonitoringStation(0, 0, 0, 0, (1.5, 3.4), 0, 0)
 
-    # Asserting what is known to be true
     assert MonitoringStation.typical_range_consistent(inconsistent) == False
     assert MonitoringStation.typical_range_consistent(no_range) == False
     assert MonitoringStation.typical_range_consistent(consistent) == True
@@ -44,5 +43,4 @@ def test_inconsistent_typical_range_stations():
     consistent = MonitoringStation(0, 0, 0, 0, (1.5, 3.4), 0, 0)
     stations = [inconsistent, no_range, consistent]
     
-    # Asserting what is known to be true
     assert inconsistent_typical_range_stations(stations) == [inconsistent.name, no_range.name]
