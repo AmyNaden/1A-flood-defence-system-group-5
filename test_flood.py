@@ -13,5 +13,5 @@ def test_stations_level_over_threshold():
     # Call function passing list and threshold value 0.16
     over_thresh = stations_level_over_threshold(stations, 0.16)
     assert len(over_thresh) == 1
-    assert over_thresh[1][0] == station1
+    assert over_thresh[0][0] == station1
 
