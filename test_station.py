@@ -44,3 +44,21 @@ def test_inconsistent_typical_range_stations():
     stations = [inconsistent, no_range, consistent]
     
     assert inconsistent_typical_range_stations(stations) == [inconsistent.name, no_range.name]
+
+def test_relative_water_level():
+    # Creating station with ratio 1
+    station1 = MonitoringStation(0,0,0,0,(2.5,3.6),0,0)
+    station1.latest_level = 3.6
+    assert station1.relative_water_level() == 1.0
+    # Creating station with ratio 0
+    station2 = MonitoringStation(0,0,0,0,(2.5,3.6),0,0)
+    station2.latest_level = 2.5
+    assert station2.relative_water_level() == 0.0
+    # Creating station with no data available
+    station3 = MonitoringStation(0,0,0,0,(2.5,3.6),0,0)
+    station3.latest_level = None
+    assert station3.relative_water_level() == None
+    # Creating station with inconsitent data 
+    station4 = MonitoringStation(0,0,0,0,(3.6,2.5),0,0)
+    station4.latest_level = 2.5
+    assert station4.relative_water_level() == None
