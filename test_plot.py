@@ -1,7 +1,6 @@
 """Unit test for the plot module"""
 import datetime
 import matplotlib.pyplot as plot
-from matplotlib import gcf
 from floodsystem.plot import plot_water_levels, plot_water_levels_general
 from floodsystem.flood import stations_highest_rel_level
 from floodsystem.stationdata import update_water_levels, build_station_list
