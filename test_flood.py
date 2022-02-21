@@ -23,10 +23,10 @@ def test_stations_highest_rel_level():
     update_water_levels(stations)
     # Get list of station objects with top N relative water level
     N = 5
-    top10 = stations_highest_rel_level(stations, N)
+    topN = stations_highest_rel_level(stations, N)
     # Check list is the correct length
-    assert len(top10) == N
+    assert len(topN) == N
     # Check first item in list is a tuple
-    assert isinstance(top10[0], tuple)
+    assert isinstance(topN[0], tuple)
     # Check list is in descending order
-    assert top10[0][1] > top10[1][1]
+    assert topN[0][1] > topN[1][1]
