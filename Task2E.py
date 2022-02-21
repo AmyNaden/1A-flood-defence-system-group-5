@@ -33,12 +33,13 @@ def run2():
     update_water_levels(stations)
 
     # Get list of station objects with top 5 relative water level
-    top5 = stations_highest_rel_level(stations, 5)
+    N = 5
+    topN = stations_highest_rel_level(stations, N)
 
     # Create list of station objects
     stations = []
-    for i in range(5):
-        stations.append(top5[i][0])
+    for i in range(N):
+        stations.append(topN[i][0])
     
     plot_water_levels_general(stations)
 
