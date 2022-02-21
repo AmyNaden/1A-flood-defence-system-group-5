@@ -1,6 +1,7 @@
 """Unit test for the flood module"""
 from floodsystem.station import MonitoringStation
-from floodsystem.flood import stations_level_over_threshold
+from floodsystem.flood import stations_level_over_threshold, stations_highest_rel_level
+from floodsystem.stationdata import update_water_levels, build_station_list
 
 def test_stations_level_over_threshold():
     # Create two stations - one above and one below threshold
@@ -15,3 +16,17 @@ def test_stations_level_over_threshold():
     assert len(over_thresh) == 1
     assert over_thresh[0][0] == station1
 
+def test_stations_highest_rel_level():
+    # Build list of stations
+    stations = build_station_list()
+    # Update latest level data for all stations
+    update_water_levels(stations)
+    # Get list of station objects with top N relative water level
+    N = 5
+    top10 = stations_highest_rel_level(stations, N)
+    # Check list is the correct length
+    assert len(top10) == N
+    # Check first item in list is a tuple
+    assert isinstance(top10[0], tuple)
+    # Check list is in descending order
+    assert top10[0][1] > top10[1][1]
