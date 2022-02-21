@@ -37,4 +37,21 @@ def test_plot_water_levels():
     '''
 
 def test_plot_water_levels_general():
-    pass
+    # Build list of stations
+    stations = build_station_list()
+
+    # Update latest level data for all stations
+    update_water_levels(stations)
+
+    # Get list of station objects with top relative water level
+    top2 = stations_highest_rel_level(stations, 2)
+
+    # Create list of station objects
+    stations = []
+    for i in range(2):
+        stations.append(top2[i][0])
+    
+     # assert that a figure has been created
+    plot_water_levels_general(stations)
+    num_figures_after = plot.gcf().number
+    assert num_figures_after >= 1
