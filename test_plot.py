@@ -1,6 +1,7 @@
 """Unit test for the plot module"""
 import datetime
-import matplotlib as plt
+import matplotlib.pyplot as plot
+from matplotlib import gcf
 from floodsystem.plot import plot_water_levels, plot_water_levels_general
 from floodsystem.flood import stations_highest_rel_level
 from floodsystem.stationdata import update_water_levels, build_station_list
@@ -23,10 +24,10 @@ def test_plot_water_levels():
     dt = 10
     dates, levels = fetch_measure_levels(station.measure_id, dt=datetime.timedelta(days=dt))
 
-
-    num_figures_before = plt.gcf().number
+    # assert that the number of figures is higher than when you started the test
+    num_figures_before = plot.gcf().number
     plot_water_levels(station, dates, levels)
-    num_figures_after = plt.gcf().number
+    num_figures_after = plot.gcf().number
     assert num_figures_before < num_figures_after
 
     '''
