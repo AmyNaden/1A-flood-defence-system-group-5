@@ -19,7 +19,7 @@ def plot_water_levels(station, dates, levels):
     # Axes should be labelled and use the station name as the plot title
     plt.xlabel('date')
     plt.ylabel('water level (m)')
-    plt.xticks(rotation=45);
+    plt.xticks(rotation=45)
     plt.title(station.name)
 
     # Include key for each line
@@ -46,7 +46,7 @@ def plot_water_levels_general(stations):
     # Axes should be labelled and use the station name as the plot title
     plt.xlabel('date')
     plt.ylabel('water level (m)')
-    plt.xticks(rotation=45);
+    plt.xticks(rotation=45)
     plt.title(station_names)
 
     # Include key for each line
