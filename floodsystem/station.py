@@ -63,7 +63,7 @@ class MonitoringStation:
         else:
             ratio = (self.latest_level - self.typical_range[0]) / (self.typical_range[1] - self.typical_range[0])
             # Additional check to remove unrealistic data
-            if ratio < 50:
+            if ratio < 100:
                 return ratio
             else:
                 return None
