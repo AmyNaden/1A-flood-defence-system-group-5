@@ -1,6 +1,11 @@
 import matplotlib.pyplot as plt
+import matplotlib.dates as datex
 from floodsystem.datafetcher import fetch_measure_levels
 import datetime
+import numpy as np
+from floodsystem.analysis import polyfit
+
+
 
 def plot_water_levels(station, dates, levels):
     '''Required for task 2E - displays a plot of water level data against time for a station'''
@@ -48,6 +53,40 @@ def plot_water_levels_general(stations):
     plt.ylabel('water level (m)')
     plt.xticks(rotation=45)
     plt.title(station_names)
+
+    # Include key for each line
+    plt.legend()
+
+    # Display plot
+    plt.tight_layout()  # This makes sure plot does not cut off date labels
+
+    plt.show()
+
+def plot_water_level_with_fit(station, dates, levels, p):
+    # Plotting the least squares fit polynomial
+    poly_tuple = polyfit(dates, levels, p)
+    poly = poly_tuple[0]
+    d0 = poly_tuple[1]
+    dates = datex.date2num(dates)
+    plt.plot(dates - dates[-1], levels, '.', '-o', label='Actual data')
+    x1 = np.linspace(0, dates[0] - dates[-1], 30)
+    y = []
+    for i in range(len(x1)):
+        y.append(poly(x1[i]))
+    plt.plot(x1, y, '-b', label='least squares fit polynomial')
+    plt.xlabel('Time (days)')
+    plt.ylabel('Water Level (m)')
+    plt.xticks(rotation=45)
+    plt.title(station.name)
+
+    # Plotting typical low/ high data
+    low_level = []
+    high_level = []
+    for i in range(len(dates - dates[-1])):
+        low_level.append(station.typical_range[0])
+        high_level.append(station.typical_range[1])
+    plt.plot(dates - dates[-1], low_level, "-g", label="typical low")
+    plt.plot(dates - dates[-1], high_level, "-r", label="typical high")
 
     # Include key for each line
     plt.legend()
