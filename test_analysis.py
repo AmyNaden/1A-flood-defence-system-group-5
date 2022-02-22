@@ -21,4 +21,4 @@ def test_polyfit():
 
     assert type(poly) == numpy.poly1d
     assert poly.order == 3
-    # assert date_offset == datetime.date.today - dates[-1]
+    assert type(date_offset) == float
