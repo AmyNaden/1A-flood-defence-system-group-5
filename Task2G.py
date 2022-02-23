@@ -42,21 +42,38 @@ def run():
     # Defining a list to fill with towns where risk level is increasing
     water_level_increasing = []
     water_level_decreasing = []
-    for i in range(len(stations)):
+    corrupt_stations = []
+    for i in range(len(high_risk_towns)):
         # Fetching data for polyfit function to approximate function
-        dates = fetch_measure_levels(stations[i].measure_id, dt=datetime.timedelta(days=2))[0]
-        levels = fetch_measure_levels(stations[i].measure_id, dt=datetime.timedelta(days=2))[1]
-        poly_tuple = polyfit(dates, levels, 4)
-        poly = poly_tuple[0]
-        # Taking derivative
-        derivative = np.polyder(poly, m=1)
-        # Evaluating at the time now (list begins at most recent data)
-        derivative_now = derivative(0)
-        # If derivative greater than 0 then water level increasing!
-        if derivative_now > 0:
-            water_level_increasing.append(stations[i])
-        if derivative_now < 0:
-            water_level_decreasing.append(stations[i])
+        try:
+            dates = fetch_measure_levels(high_risk_towns[i].measure_id, dt=datetime.timedelta(days=2))[0]
+            levels = fetch_measure_levels(high_risk_towns[i].measure_id, dt=datetime.timedelta(days=2))[1]
+        except:
+            corrupt_stations.append(high_risk_towns[i].name)
+
+        print(len(dates)==len(levels) and len(dates)>0)
+        flag = True 
+        if len(dates) == 0:
+            flag = False
+        for j in range(len(levels)):
+            if type(levels[j]) != float:
+                flag = False 
+        if flag == True:
+            poly_tuple = polyfit(dates, levels, 4)
+            poly = poly_tuple[0]
+            # Taking derivative
+            derivative = np.polyder(poly, m=1)
+            # Evaluating at the time now (list begins at most recent data)
+            derivative_now = derivative(0)
+            # If derivative greater than 0 then water level increasing!
+            if derivative_now > 0:
+                water_level_increasing.append(high_risk_towns[i])
+            if derivative_now < 0:
+                water_level_decreasing.append(high_risk_towns[i])
+        else:
+            corrupt_stations.append(high_risk_towns[i].name)
+
+    print(corrupt_stations)
     # Setting condition to prevent an infinite loop
     choice = True           
     while choice == True:
@@ -79,8 +96,8 @@ def run():
 
         # Repeating for other options
         elif option == "high":
-            high_statement = "----The towns at high risk are: "
-            high_changing_statement = "!!! THESE AREAS MAY SOON BE AT SEVERE RISK: "
+            high_statement = "\n----The towns at high risk are: "
+            high_changing_statement = "\n!!! THESE AREAS MAY SOON BE AT SEVERE RISK: "
             for i in range(len(high_risk_towns)):
                 high_statement += "{}, ".format(high_risk_towns[i].name)
                 if high_risk_towns[i] in water_level_increasing:
@@ -90,18 +107,13 @@ def run():
             
 
         elif option == "moderate":
-            moderate_statement = "----The towns at moderate risk are: "
-            moderate_changing_statement = "!!! THESE AREAS MAY SOON BE AT HIGH RISK: "
+            moderate_statement = "\n----The towns at moderate risk are: "
             for i in range(len(moderate_risk_towns)):
                 moderate_statement += "{}, ".format(moderate_risk_towns[i].name)
-                if moderate_risk_towns[i] in water_level_increasing:
-                    moderate_changing_statement += "{}, ".format(moderate_risk_towns[i].name)
             print(moderate_statement)
-            print(moderate_changing_statement + "!!!")
 
         elif option == "low":
-            low_statement = "----The towns at low risk are: "
-            low_changing_statement = "!!! THESE AREAS MAY SOON BE AT MODERATE RISK: "
+            low_statement = "\n----The towns at low risk are: "
             for i in range(len(low_risk_towns)):
                 low_statement += "{}, ".format(low_risk_towns[i].name)
                 if low_risk_towns[i] in water_level_increasing:
