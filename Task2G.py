@@ -51,7 +51,6 @@ def run():
         except:
             corrupt_stations.append(high_risk_towns[i].name)
 
-        print(len(dates)==len(levels) and len(dates)>0)
         flag = True 
         if len(dates) == 0:
             flag = False
@@ -78,7 +77,7 @@ def run():
     choice = True           
     while choice == True:
         # Asking for user input to decide what list will be displayed
-        print('Please enter a valid risk level: severe, high, moderate or low, or press enter to quit program')
+        print('\nPlease enter a valid risk level: severe, high, moderate or low, or press enter to quit program')
         option = str(input("What risk level would you like to see? "))
         if option == "severe":
             # Constructing statement of towns at severe risk            
